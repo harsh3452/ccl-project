@@ -20,7 +20,6 @@ import { LayoutList, Users } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import EndCallButton from "./EndCallButton";
 import Loader from "./Loader";
-import CallRecord from "./CallRecord";
 import CustomCallControls from "./CustomCallControls";
 
 
