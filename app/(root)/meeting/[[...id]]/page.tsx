@@ -12,7 +12,7 @@ const MeetingPage = ({ params }: { params: Promise<{ id: string }> }) => {
     const { id } = use(params);
 
     const [isSetupComplete, setIsSetupComplete] = useState(false);
-    const { user, isLoaded } = useUser();
+    const { isLoaded } = useUser();
     const { call, isCallLoading } = useGetCallById(id);
 
     if (!isLoaded || isCallLoading) return <Loader />;

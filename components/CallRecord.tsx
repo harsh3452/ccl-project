@@ -1,5 +1,4 @@
 import { useCall, useCallStateHooks } from "@stream-io/video-react-sdk";
-import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { Button } from "./ui/button";
 import Image from "next/image";
