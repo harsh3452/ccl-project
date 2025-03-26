@@ -5,12 +5,11 @@ import {
     ToggleAudioPublishingButton,
     ToggleVideoPublishingButton,
 } from "@stream-io/video-react-sdk";
-import type { CallControlsProps } from "@stream-io/video-react-sdk";
 import { useRouter } from "next/navigation";
 import CallRecord from "./CallRecord";
 
 
-const CustomCallControls = ({ onLeave }: CallControlsProps) => {
+const CustomCallControls = () => {
     const router = useRouter();
     return (
         <div className="str-video__call-controls">

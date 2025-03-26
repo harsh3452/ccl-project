@@ -5,7 +5,6 @@ import { Button } from "./ui/button";
 import Image from "next/image";
 import {
   AlertDialog,
-  AlertDialogTrigger,
   AlertDialogContent,
   AlertDialogHeader,
   AlertDialogTitle,
@@ -16,7 +15,6 @@ import {
 } from "@/components/ui/alert-dialog";
 
 const CallRecord = () => {
-  const router = useRouter();
   const call = useCall();
   const { useLocalParticipant, useIsCallRecordingInProgress, useParticipants } =
     useCallStateHooks();
@@ -24,10 +22,9 @@ const CallRecord = () => {
   const isRecording = useIsCallRecordingInProgress();
   const participants = useParticipants();
   const [showDialog, setShowDialog] = useState(false);
-  const [consentResponses, setConsentResponses] = useState<{ [key: string]: boolean }>({});
-
-  const isMeetingOwner =
-    localParticipant && call?.state.createdBy && localParticipant.userId === call.state.createdBy.id;
+  const [consentResponses, setConsentResponses] = useState<{
+    [key: string]: boolean;
+  }>({});
 
   // 🔹 Request recording (only if not already recording)
   const requestRecording = async () => {
@@ -98,7 +95,8 @@ const CallRecord = () => {
   // 🔹 Automatically start recording if ALL participants consent
   useEffect(() => {
     const totalParticipants = Object.keys(participants).length;
-    const consentedUsers = Object.values(consentResponses).filter(Boolean).length;
+    const consentedUsers =
+      Object.values(consentResponses).filter(Boolean).length;
 
     if (totalParticipants > 0 && consentedUsers === totalParticipants) {
       call.startRecording();
@@ -112,43 +110,46 @@ const CallRecord = () => {
         onClick={requestRecording}
       >
         <Image
-          src={isRecording ? "/icons/rec-button.png" : "/icons/record-button1.png"}
+          src={
+            isRecording ? "/icons/rec-button.png" : "/icons/record-button1.png"
+          }
           height={30}
           width={30}
           alt="record-button"
         />
       </Button>
       <AlertDialog open={showDialog}>
-  <AlertDialogContent className="bg-gray-900 text-white border border-gray-700 rounded-lg shadow-lg">
-    {/* 🔴 Header with Warning Icon */}
-    <AlertDialogHeader className="bg-red-600 text-white p-4 rounded-t-lg">
-      <AlertDialogTitle className="text-lg font-bold">⚠️ Recording Notice</AlertDialogTitle>
-    </AlertDialogHeader>
+        <AlertDialogContent className="bg-gray-900 text-white border border-gray-700 rounded-lg shadow-lg">
+          {/* 🔴 Header with Warning Icon */}
+          <AlertDialogHeader className="bg-red-600 text-white p-4 rounded-t-lg">
+            <AlertDialogTitle className="text-lg font-bold">
+              ⚠️ Recording Notice
+            </AlertDialogTitle>
+          </AlertDialogHeader>
 
-    {/* 🔹 Description Section */}
-    <AlertDialogDescription className="p-4 text-gray-300">
-      This meeting will be recorded. Do you consent?
-    </AlertDialogDescription>
+          {/* 🔹 Description Section */}
+          <AlertDialogDescription className="p-4 text-gray-300">
+            This meeting will be recorded. Do you consent?
+          </AlertDialogDescription>
 
-    {/* ✅ Buttons with Color Styling */}
-    <AlertDialogFooter className="p-4 flex justify-between">
-      <AlertDialogCancel
-        className="bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg"
-        onClick={() => handleConsentResponse(false)}
-      >
-        ❌ No, I Decline
-      </AlertDialogCancel>
+          {/* ✅ Buttons with Color Styling */}
+          <AlertDialogFooter className="p-4 flex justify-between">
+            <AlertDialogCancel
+              className="bg-gray-700 hover:bg-gray-600 text-white font-medium py-2 px-4 rounded-lg"
+              onClick={() => handleConsentResponse(false)}
+            >
+              ❌ No, I Decline
+            </AlertDialogCancel>
 
-      <AlertDialogAction
-        className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg"
-        onClick={() => handleConsentResponse(true)}
-      >
-        ✅ Yes, I Consent
-      </AlertDialogAction>
-    </AlertDialogFooter>
-  </AlertDialogContent>
-</AlertDialog>
-
+            <AlertDialogAction
+              className="bg-green-500 hover:bg-green-600 text-white font-medium py-2 px-4 rounded-lg"
+              onClick={() => handleConsentResponse(true)}
+            >
+              ✅ Yes, I Consent
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   );
 };
