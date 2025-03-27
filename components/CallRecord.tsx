@@ -64,7 +64,7 @@ const CallRecord = () => {
   const handleConsentResponse = async (consent: boolean) => {
     setShowDialog(false);
 
-    await call?.sendCustomEvent({
+    await call.sendCustomEvent({
       type: "recording-consent-response",
       payload: { userId: localParticipant?.userId, consent },
     });
@@ -98,7 +98,7 @@ const CallRecord = () => {
       Object.values(consentResponses).filter(Boolean).length;
 
     if (totalParticipants > 0 && consentedUsers === totalParticipants) {
-      call?.startRecording();
+      call.startRecording();
     }
   }, [consentResponses, call, participants]);
 
