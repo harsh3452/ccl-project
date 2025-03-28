@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: "Linkify",
   description: "Video Call with Privacy",
   icons: {
-    icon: '/icons/logo.svg'
+    icon: '/icons/logo.png'
   }
 };
 
@@ -33,7 +33,7 @@ export default function RootLayout({
       <ClerkProvider 
       appearance={{
         layout:{
-          logoImageUrl: '/icons/yoom-logo.svg',
+          logoImageUrl: '/icons/logo.png',
           socialButtonsVariant: 'iconButton'
         },
         variables: {

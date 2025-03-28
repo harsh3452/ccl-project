@@ -15,7 +15,7 @@ bg-dark-1 px-6 py-4 lg:px-10'>
       <Link href="/" className='flex items-center gap-1'>
 
         < Image
-          src="/icons/logo.svg"
+          src="/icons/logo.png"
           width={35}
           height={35}
           alt="logo"

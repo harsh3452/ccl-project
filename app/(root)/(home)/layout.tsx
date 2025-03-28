@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Linkify",
   description: "Video Call with Privacy",
   icons: {
-    icon: '/icons/logo.svg'
+    icon: '/icons/logo.png'
   }
 };
 const HomeLayout = ({ children }: { children: ReactNode }) => {
